@@ -555,6 +555,7 @@
     "__prefab": null,
     "balloonPrefab": 1,
     "balloonsParent": null,
+    "spawnInterval": 0.5,
     "_id": "2ayDhu7qdCy4xtze8Ft1Mb"
   },
   {
