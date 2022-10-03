@@ -1,7 +1,8 @@
 import InputCatcher from '../InputCatcher';
+import { Component, Touch } from 'cc';
 
 export default abstract class IInputCommand {
-	public onDown(touch: cc.Touch, InputCatcher: InputCatcher) { }
-	public onMove(touch: cc.Touch, InputCatcher: InputCatcher) { }
-	public onUp(touch: cc.Touch, InputCatcher: InputCatcher) { }
+	public onDown(touch: Touch, inputCatcher: InputCatcher, target?: any) { }
+	public onMove(touch: Touch, inputCatcher: InputCatcher, target?: any) { }
+	public onUp(touch: Touch, inputCatcher: InputCatcher, target?: any) { }
 }
