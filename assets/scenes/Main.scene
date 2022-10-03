@@ -30,11 +30,11 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 18
+      "__id__": 19
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 19
+      "__id__": 20
     },
     "_id": "004f5e5f-ad3b-4dd7-a5e7-8646b236cc4f"
   },
@@ -293,13 +293,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 15
-      },
-      {
         "__id__": 16
       },
       {
         "__id__": 17
+      },
+      {
+        "__id__": 18
       }
     ],
     "_prefab": null,
@@ -427,6 +427,9 @@
     "_components": [
       {
         "__id__": 14
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -478,6 +481,19 @@
       "y": 0.5
     },
     "_id": "c9CZ9aDD5J+ZOkAC5XOrsg"
+  },
+  {
+    "__type__": "cc989DbnchP+4YYGf5EUUfO",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 13
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "balloonPrefab": 1,
+    "balloonsParent": null,
+    "_id": "08t6WSG+1AWIeZCzgdN/lu"
   },
   {
     "__type__": "cc.UITransform",
@@ -551,19 +567,19 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 20
-    },
-    "shadows": {
       "__id__": 21
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 22
     },
-    "fog": {
+    "_skybox": {
       "__id__": 23
     },
-    "octree": {
+    "fog": {
       "__id__": 24
+    },
+    "octree": {
+      "__id__": 25
     }
   },
   {
