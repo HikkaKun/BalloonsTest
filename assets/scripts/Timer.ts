@@ -1,12 +1,12 @@
 export default class Timer {
 	private _time = 0;
 	private _isStarted = false;
-	private readonly _endTime;
+	private readonly _interval;
 
-	public OnTimerEndCallback: () => {};
+	public OnTimerEndCallback: () => void;
 
-	constructor(endTime, isStart = false) {
-		this._endTime = endTime;
+	constructor(interval, isStart = false) {
+		this._interval = interval;
 
 		isStart && this.start();
 	}
@@ -19,7 +19,7 @@ export default class Timer {
 		if (!this._isStarted) return;
 
 		this._time += dt;
-		if (this._time >= this._endTime) {
+		if (this._time >= this._interval) {
 			this._time = 0;
 			this.OnTimerEndCallback instanceof Function && this.OnTimerEndCallback();
 		}
