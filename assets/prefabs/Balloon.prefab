@@ -51,8 +51,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_layer": 1073741824,
@@ -341,13 +341,13 @@
     "_group": 2,
     "_type": 2,
     "_allowSleep": true,
-    "_gravityScale": -1,
+    "_gravityScale": -0.25,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 5
     },
     "_angularVelocity": 0,
     "_fixedRotation": false,
