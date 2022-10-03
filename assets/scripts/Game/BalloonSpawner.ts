@@ -2,6 +2,7 @@
 import { _decorator, Component, Node } from 'cc';
 import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
 import { GameObjectType, GameOjbectTypeEnum } from '../Plugins/GameObject/GameObjectType';
+import { Bounds } from '../Utilities';
 const { ccclass, property } = _decorator;
 
 @ccclass('BalloonSpawner')
@@ -17,8 +18,15 @@ export class BalloonSpawner extends Component {
 	}
 
 	public spawn() {
-		const balloon = GameObjectManager.createGameOjbect(this.balloonPrefab);
+		const balloon = GameObjectManager.createGameOjbect(this.balloonPrefab, false);
 
-		balloon.parent = this.balloonsParent || this.node;
+		if (!balloon) return;
+
+		const parent = this.balloonsParent || this.node;
+		const bounds = new Bounds(parent);
+
+		balloon.parent = parent;
+		balloon.setPosition(bounds.getRandomPosition());
+		balloon.active = true;
 	}
 }
