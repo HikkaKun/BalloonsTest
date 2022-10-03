@@ -1,7 +1,8 @@
 
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, CCFloat } from 'cc';
 import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
 import { GameObjectType, GameOjbectTypeEnum } from '../Plugins/GameObject/GameObjectType';
+import Timer from '../Timer';
 import { Bounds } from '../Utilities';
 const { ccclass, property } = _decorator;
 
@@ -13,8 +14,18 @@ export class BalloonSpawner extends Component {
 	@property(Node)
 	balloonsParent: Node | null = null;
 
+	@property(CCFloat)
+	spawnInterval = 0.5;
+
+	private _spawnTimer: Timer;
+
 	protected start() {
-		this.spawn();
+		this._spawnTimer = new Timer(this.spawnInterval, true);
+		this._spawnTimer.OnTimerEndCallback = () => this.spawn();
+	}
+
+	protected update(dt: number) {
+		this._spawnTimer.update(dt);
 	}
 
 	public spawn() {
