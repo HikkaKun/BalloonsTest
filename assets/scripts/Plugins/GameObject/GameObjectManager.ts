@@ -65,7 +65,7 @@ export default class GameObjectManager extends Component {
 	public static createGameOjbect(type: GameOjbectTypeEnum, activate = true): Node | null {
 		if (!this._staticPrefabs.has(type) || this._staticPoolManager == null) return null;
 
-		const node = this._staticPoolManager.pools.get(this._staticPrefabs.get(type) as Prefab)?.pop();
+		const node = this._staticPoolManager.pools.get(this._staticPrefabs.get(type))?.pop();
 
 		if (!node) return null;
 
