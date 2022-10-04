@@ -13,5 +13,6 @@ export default class PoolObject extends Component {
 		if (this.pool == null) return;
 
 		this.node.parent = this.pool.node;
+		this.pool.push(this.node);
 	}
 }
