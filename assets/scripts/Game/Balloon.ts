@@ -3,7 +3,7 @@ import { _decorator, Component, Node, log, RigidBody2D, Vec2, Vec3, Color, Sprit
 import { GameEvent } from '../Plugins/GameEvent';
 import GameObject from '../Plugins/GameObject/GameObject';
 import GlobalEvent from '../Plugins/GlobalEvent';
-import { PhysicGroup } from '../Plugins/PhysicGroup';
+import { PhysicGroup } from '../Plugins/Physics/PhysicGroup';
 import { convertEulerToAngle } from '../Utilities';
 const { ccclass, property } = _decorator;
 
