@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, SpriteFrame, Vec2, Sprite, UITransform, Vec3, game, UIOpacity } from 'cc';
+import { _decorator, Component, Node, Vec2, Sprite, UITransform, Vec3, UIOpacity } from 'cc';
 import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
 import { GameObjectType } from '../Plugins/GameObject/GameObjectType';
 import { ColorManager } from './ColorManager';

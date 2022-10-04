@@ -5,6 +5,8 @@ export const GameEvent = Enum({
 	None: 0,
 
 	Input: 5,
+
+	BalloonDestoyed: 10,
 });
 
 export type GameEventEnum = EnumType<typeof GameEvent>;

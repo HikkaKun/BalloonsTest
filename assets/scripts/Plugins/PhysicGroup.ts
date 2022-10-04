@@ -3,4 +3,5 @@ export enum PhysicGroup {
 	BALLOON = 1 << 1,
 	BORDERS = 1 << 2,
 	SPIKES = 1 << 3,
+	COLOR_FIELD = 1 << 4,
 }
