@@ -15,7 +15,7 @@ export default class Timer {
 		this._isStarted = true;
 	}
 
-	public update(dt) {
+	public update(dt: number) {
 		if (!this._isStarted) return;
 
 		this._time += dt;
@@ -27,5 +27,10 @@ export default class Timer {
 
 	public stop() {
 		this._isStarted = false;
+	}
+
+	public reset(isStart = true) {
+		this._time = 0;
+		this._isStarted = isStart;
 	}
 }
