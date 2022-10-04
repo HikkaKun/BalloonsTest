@@ -1,4 +1,4 @@
-import { Node, UITransform, Vec2, Vec3 } from 'cc';
+import { math, Node, UITransform, Vec2, Vec3 } from 'cc';
 
 export function randomEnumKey<T extends object>(anEnum: T, limitTo?: number): T[keyof T] {
 	const values = Object.keys(anEnum)
@@ -49,8 +49,8 @@ export class Bounds {
 
 	public getRandomPosition(): Vec3 {
 		return new Vec3(
-			this.topLeft.x + randomFloat(this.width),
-			this.bottomRight.y + randomFloat(this.height)
+			randomFloat(this.width) - this.width / 2,
+			randomFloat(this.height) - this.height / 2
 		);
 	}
 }
@@ -69,4 +69,19 @@ export function randomInt(max: number): number {
 
 export function randomIntRange(min: number, max: number): number {
 	return Math.floor(randomRange(min, max));
+}
+
+export function convertEulerToAngle(euler: math.IVec3Like): number {
+	const z = euler.z;
+
+	switch (euler.x) {
+		case 0:
+			return z > 0 ? z : 360 + z;
+		case 180:
+			return 180 - z;
+		case -180:
+			return 180 - z;
+	}
+
+	return 0;
 }
