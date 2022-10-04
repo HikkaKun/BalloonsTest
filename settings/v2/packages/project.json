@@ -15,12 +15,17 @@
       {
         "index": 2,
         "name": "Borders"
+      },
+      {
+        "index": 3,
+        "name": "Spikes"
       }
     ],
     "collisionMatrix": {
       "0": 0,
-      "1": 6,
-      "2": 2
+      "1": 14,
+      "2": 2,
+      "3": 2
     }
   }
 }
