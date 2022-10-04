@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, CCFloat } from 'cc';
+import { _decorator, Component, Node, CCFloat, RigidBody2D, Vec2, log } from 'cc';
 import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
 import { GameObjectType, GameOjbectTypeEnum } from '../Plugins/GameObject/GameObjectType';
 import Timer from '../Timer';
@@ -9,13 +9,13 @@ const { ccclass, property } = _decorator;
 @ccclass('BalloonSpawner')
 export class BalloonSpawner extends Component {
 	@property({ type: GameObjectType })
-	balloonPrefab: GameOjbectTypeEnum = GameObjectType.None;
+	public balloonPrefab: GameOjbectTypeEnum = GameObjectType.None;
 
 	@property(Node)
-	balloonsParent: Node | null = null;
+	public balloonsParent: Node | null = null;
 
 	@property(CCFloat)
-	spawnInterval = 0.5;
+	public spawnInterval = 0.5;
 
 	private _spawnTimer: Timer;
 
@@ -38,6 +38,10 @@ export class BalloonSpawner extends Component {
 
 		balloon.parent = parent;
 		balloon.setPosition(bounds.getRandomPosition());
+
+		balloon.getComponent(RigidBody2D).linearVelocity = new Vec2();
+		balloon.angle = 0;
+
 		balloon.active = true;
 	}
 }
