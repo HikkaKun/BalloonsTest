@@ -8,7 +8,7 @@ export class GameManager extends Component {
 	@property(CCBoolean)
 	isPhysics2DEnabled = false;
 
-	@property({ type: CCBoolean, visible: function () { return this.isPhysics2DEnabled } })
+	@property({ visible: function () { return this.isPhysics2DEnabled } })
 	drawPhysics = false;
 
 	protected start() {
