@@ -27,6 +27,9 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 15
+      },
+      {
         "__id__": 18
       },
       {
@@ -212,9 +215,6 @@
       },
       {
         "__id__": 13
-      },
-      {
-        "__id__": 15
       }
     ],
     "_prefab": {
@@ -346,17 +346,18 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 8
+      "__id__": 1
     },
     "_enabled": true,
     "__prefab": {
       "__id__": 16
     },
+    "type": 1,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "83I2qbqCpKTKPflDVzxVaz"
+    "fileId": "a4dfRQllJH/KZfiiAk+Jaf"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -387,7 +388,7 @@
     "_allowSleep": true,
     "_gravityScale": -0.25,
     "_linearDamping": 0,
-    "_angularDamping": 0,
+    "_angularDamping": 0.1,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
       "x": 0,
