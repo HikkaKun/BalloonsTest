@@ -2,8 +2,8 @@
 import { _decorator, Component, Node, PhysicsSystem2D, CCBoolean, EPhysics2DDrawFlags } from 'cc';
 const { ccclass, property } = _decorator;
 
-@ccclass('GameManager')
-export class GameManager extends Component {
+@ccclass('PhysicsManager')
+export class PhysicsManager extends Component {
 
 	@property(CCBoolean)
 	isPhysics2DEnabled = false;
