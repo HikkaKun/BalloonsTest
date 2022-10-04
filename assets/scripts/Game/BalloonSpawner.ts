@@ -1,9 +1,11 @@
 
-import { _decorator, Component, Node, CCFloat, RigidBody2D, Vec2, log } from 'cc';
+import { _decorator, Component, Node, CCFloat, RigidBody2D, Vec2, log, Sprite } from 'cc';
 import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
 import { GameObjectType, GameOjbectTypeEnum } from '../Plugins/GameObject/GameObjectType';
 import Timer from '../Timer';
 import { Bounds } from '../Utilities';
+import { Balloon } from './Balloon';
+import { ColorManager } from './ColorManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('BalloonSpawner')
@@ -41,6 +43,8 @@ export class BalloonSpawner extends Component {
 
 		balloon.getComponent(RigidBody2D).linearVelocity = new Vec2();
 		balloon.angle = 0;
+
+		balloon.getComponent(Balloon).color = ColorManager.getColor()
 
 		balloon.active = true;
 	}
