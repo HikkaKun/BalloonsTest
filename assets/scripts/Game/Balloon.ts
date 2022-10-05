@@ -1,5 +1,6 @@
 
 import { _decorator, Component, Node, log, RigidBody2D, Vec2, Vec3, Color, Sprite, Collider2D, Contact2DType, IPhysics2DContact, PhysicsSystem2D, ERaycast2DType, Rect } from 'cc';
+import { GameState } from '../Plugins/Game/GameState';
 import { GameEvent } from '../Plugins/GameEvent';
 import GameObject from '../Plugins/GameObject/GameObject';
 import GlobalEvent from '../Plugins/GlobalEvent';
@@ -32,10 +33,24 @@ export class Balloon extends GameObject {
 		this.getComponent(Collider2D).on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
 	}
 
+	protected onEnable() {
+		this._handleEvents(true);
+	}
+
+	protected onDisable() {
+		this._handleEvents(false);
+	}
+
 	protected update(dt: number) {
 		const euler = this.node.rotation.getEulerAngles(new Vec3());
 		const angle = convertEulerToAngle(euler);
 		this._rigidBody.angularVelocity = angle > 0 && angle <= 180 ? -0.1 : 0.1;
+	}
+
+	protected _handleEvents(isOn: boolean) {
+		const func = isOn ? 'on' : 'off';
+
+		GlobalEvent[func](GameEvent.ChangeGameState, this.OnChangeGameState, this);
 	}
 
 	public destroyBalloon(byUser = false) {
@@ -68,6 +83,12 @@ export class Balloon extends GameObject {
 			setTimeout(() => {
 				this.destroyBalloon();
 			});
+		}
+	}
+
+	public OnChangeGameState(gameState: number) {
+		if (gameState == GameState.Lose) {
+			this.kill();
 		}
 	}
 }

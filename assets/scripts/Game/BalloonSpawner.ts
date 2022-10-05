@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, CCFloat, RigidBody2D, Vec2, log, Sprite } from 'cc';
+import { _decorator, Component, Node, CCFloat, RigidBody2D, Vec2 } from 'cc';
 import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
 import { GameObjectType, GameOjbectTypeEnum } from '../Plugins/GameObject/GameObjectType';
 import Timer from '../Timer';
@@ -17,17 +17,32 @@ export class BalloonSpawner extends Component {
 	public balloonsParent: Node | null = null;
 
 	@property(CCFloat)
-	public spawnInterval = 0.5;
+	public startSpawnInterval = 0.5;
+
+	@property(CCFloat)
+	public minSpawnInterval = 0.5;
+
+	@property(CCFloat)
+	public spawnIntervalDecrementPerMinute = 1;
 
 	private _spawnTimer: Timer;
 
-	protected start() {
-		this._spawnTimer = new Timer(this.spawnInterval, true);
+	protected onLoad() {
+		this._spawnTimer = new Timer(this.startSpawnInterval, false);
 		this._spawnTimer.OnTimerEndCallback = () => this.spawn();
 	}
 
 	protected update(dt: number) {
+		this._spawnTimer.interval = Math.max(this._spawnTimer.interval - this.spawnIntervalDecrementPerMinute * dt / 60, this.minSpawnInterval);
 		this._spawnTimer.update(dt);
+	}
+
+	public reset() {
+		this._spawnTimer.reset(true);
+	}
+
+	public stop() {
+		this._spawnTimer.stop();
 	}
 
 	public spawn() {
