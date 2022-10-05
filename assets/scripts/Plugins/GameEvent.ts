@@ -7,6 +7,7 @@ export const GameEvent = Enum({
 	Input: 5,
 
 	ChangeGameState: 6,
+	PlayAudio: 7,
 
 	BalloonDestoyed: 10,
 });

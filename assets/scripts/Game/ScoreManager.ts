@@ -1,8 +1,11 @@
 
-import { _decorator, Component, Node, CCInteger, CCFloat, RichText } from 'cc';
+import { _decorator, Component, Node, CCInteger, CCFloat, RichText, Vec3, Label, tween } from 'cc';
 import { GameState } from '../Plugins/Game/GameState';
 import { GameEvent } from '../Plugins/GameEvent';
+import GameObjectManager from '../Plugins/GameObject/GameObjectManager';
+import { GameObjectType } from '../Plugins/GameObject/GameObjectType';
 import GlobalEvent from '../Plugins/GlobalEvent';
+import PoolObject from '../Plugins/Pool/PoolObject';
 const { ccclass, property } = _decorator;
 
 @ccclass('ScoreManager')
@@ -21,6 +24,12 @@ export class ScoreManager extends Component {
 
 	@property(RichText)
 	public multiplierText: RichText;
+
+	@property({ type: GameObjectType })
+	public pointsPrefab = GameObjectType.None;
+
+	@property(Node)
+	public pointsParent: Node;
 
 	public multiplier = 1;
 
@@ -67,7 +76,27 @@ export class ScoreManager extends Component {
 		}
 	}
 
-	public OnBalloonDestroyed(byUser: boolean, inField: boolean) {
+	protected _spawnPoints(worldPosition: Vec3) {
+		const node = GameObjectManager.createGameOjbect(this.pointsPrefab, true);
+		node.parent = this.pointsParent || this.node;
+		node.setWorldPosition(worldPosition);
+
+		const text = node.getComponent(Label);
+		text.string = '+' + this.multiplier;
+
+		const position = node.getPosition();
+		position.y += 25;
+
+		tween(node)
+			.to(1, { position: position }, {
+				onComplete: () => {
+					node.getComponent(PoolObject).returnToPool();
+				}
+			})
+			.start();
+	}
+
+	public OnBalloonDestroyed(byUser: boolean, inField: boolean, worldPosition: Vec3) {
 		if (byUser) {
 			if (inField) {
 				this.multiplier = Math.min(this.multiplier * this.multiplierIfTapInsideField, this.maxMultiplier);
@@ -76,6 +105,8 @@ export class ScoreManager extends Component {
 			}
 
 			this.score += this.scoreForBalloon * this.multiplier;
+
+			this._spawnPoints(worldPosition);
 		} else {
 			this.multiplier = 1;
 		}
@@ -84,6 +115,9 @@ export class ScoreManager extends Component {
 	}
 
 	public OnChangeGameState(gameState: number) {
-		if (gameState == GameState.Ready) this.score = 0;
+		if (gameState == GameState.Ready) {
+			this.score = 0;
+			this._updateText();
+		}
 	}
 }

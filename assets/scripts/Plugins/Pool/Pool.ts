@@ -43,6 +43,8 @@ export default class Pool extends Component {
 	}
 
 	public push(node: Node): void {
-		this._objects.push(node);
+		if (this._objects.indexOf(node) == -1) {
+			this._objects.push(node);
+		}
 	}
 }

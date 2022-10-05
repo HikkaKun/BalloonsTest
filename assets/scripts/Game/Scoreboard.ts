@@ -60,6 +60,6 @@ export class Scoreboard extends Component {
 			node.setPosition(this.textStartPoint.getPosition().add(new Vec3(0, -50 * i)));
 		}
 
-		this.content.getComponent(UITransform).height = this._scoresArray.length * 50;
+		this.content.getComponent(UITransform).height = this._scoresArray.length * 50 + 100;
 	}
 }

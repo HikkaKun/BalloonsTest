@@ -1,5 +1,6 @@
 
 import { _decorator, Component, Node, log, RigidBody2D, Vec2, Vec3, Color, Sprite, Collider2D, Contact2DType, IPhysics2DContact, PhysicsSystem2D, ERaycast2DType, Rect } from 'cc';
+import { AudioType } from '../Plugins/Audio/AudioType';
 import { GameState } from '../Plugins/Game/GameState';
 import { GameEvent } from '../Plugins/GameEvent';
 import GameObject from '../Plugins/GameObject/GameObject';
@@ -67,13 +68,19 @@ export class Balloon extends GameObject {
 			}
 		}
 
-		GlobalEvent.emit(GameEvent.BalloonDestoyed, byUser, inField);
+		GlobalEvent.emit(GameEvent.BalloonDestoyed, byUser, inField, this.node.getWorldPosition());
 
 		this.kill();
 	}
 
 	public onDown() {
 		this.destroyBalloon(true);
+	}
+
+	public kill() {
+		super.kill()
+
+		GlobalEvent.emit(GameEvent.PlayAudio, AudioType.BalloonPop);
 	}
 
 	public onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
