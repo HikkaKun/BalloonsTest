@@ -35,7 +35,11 @@ export default class Pool extends Component {
 	}
 
 	public pop(): Node | null {
-		return this._objects.pop() ?? this._createNewObject();
+		if (this._objects.length > 0) {
+			return this._objects.pop();
+		} else {
+			return this._createNewObject();
+		}
 	}
 
 	public push(node: Node): void {
