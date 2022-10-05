@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, Node, game } from 'cc';
 import { GameState } from '../Plugins/Game/GameState';
 import { GameEvent } from '../Plugins/GameEvent';
 import GlobalEvent from '../Plugins/GlobalEvent';
@@ -31,7 +31,7 @@ export class ScreenController extends Component {
 	}
 
 	public OnChangeGameState(gameState: number) {
-		switch (gameState) {
+		switch (Number(gameState)) {
 			case GameState.Ready:
 				this.readyScreen.active = true;
 				this.loseScreen.active = false;
@@ -46,6 +46,12 @@ export class ScreenController extends Component {
 				this.readyScreen.active = false;
 				this.loseScreen.active = true;
 				this.scoreboard.active = false;
+				break;
+			case GameState.Scoreboard:
+				this.readyScreen.active = false;
+				this.loseScreen.active = false;
+				this.scoreboard.active = true;
+				break;
 		}
 	}
 }

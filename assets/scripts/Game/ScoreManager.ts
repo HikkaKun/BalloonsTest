@@ -1,5 +1,6 @@
 
 import { _decorator, Component, Node, CCInteger, CCFloat, RichText } from 'cc';
+import { GameState } from '../Plugins/Game/GameState';
 import { GameEvent } from '../Plugins/GameEvent';
 import GlobalEvent from '../Plugins/GlobalEvent';
 const { ccclass, property } = _decorator;
@@ -22,7 +23,20 @@ export class ScoreManager extends Component {
 	public multiplierText: RichText;
 
 	public multiplier = 1;
-	public score = 0;
+
+	public get score() {
+		return ScoreManager._score;
+	}
+
+	public set score(value: number) {
+		ScoreManager._score = value;
+	}
+
+	private static _score = 0;
+
+	public static getScore(): number {
+		return ScoreManager._score;
+	}
 
 	protected start() {
 		this._updateText();
@@ -40,6 +54,7 @@ export class ScoreManager extends Component {
 		const func = isOn ? 'on' : 'off';
 
 		GlobalEvent[func](GameEvent.BalloonDestoyed, this.OnBalloonDestroyed, this);
+		GlobalEvent[func](GameEvent.ChangeGameState, this.OnChangeGameState, this);
 	}
 
 	protected _updateText() {
@@ -66,5 +81,9 @@ export class ScoreManager extends Component {
 		}
 
 		this._updateText();
+	}
+
+	public OnChangeGameState(gameState: number) {
+		if (gameState == GameState.Ready) this.score = 0;
 	}
 }

@@ -28,7 +28,7 @@ export class SpawnController extends Component {
 	public OnChangeGameState(gameState: number) {
 		if (!this.spawner) return;
 
-		switch (gameState) {
+		switch (Number(gameState)) {
 			case GameState.Game:
 				this.spawner.reset();
 				break;

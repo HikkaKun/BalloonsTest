@@ -7,6 +7,8 @@ export const GameObjectType = Enum({
 	Balloon: 1,
 
 	ColorField: 2,
+
+	ScoreText: 3,
 })
 
 export type GameOjbectTypeEnum = EnumType<typeof GameObjectType>;

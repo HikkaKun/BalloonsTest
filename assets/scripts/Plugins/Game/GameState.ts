@@ -6,4 +6,5 @@ export const GameState = Enum({
 	Ready: 1,
 	Game: 2,
 	Lose: 3,
+	Scoreboard: 4,
 });
